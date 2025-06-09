@@ -1,0 +1,317 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="a training-free method powered by Stable Diffusion that generates complete room-scale 3D meshes with high-fidelity texture given a sparse collection of RGBD images.">
+  <meta name="keywords" content="3D Generation, 3D Reconstruction, Scene Generation, Diffusion Model, Stable Diffusion">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UA-Pose: Uncertainty-Aware 6D Object Pose Estimation and Online Object Completion with Partial References</title>
+  
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
+
+  <!-- bulma css template -->
+  <link rel="stylesheet" href="./css/bulma.min.css">
+  <link rel="stylesheet" href="./css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./css/twentytwenty.css">
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./js/fontawesome.all.min.js"></script>
+  <script src="./js/bulma-carousel.min.js"></script>
+  <script src="./js/bulma-carousel.js"></script>
+  <script src="./js/bulma-slider.min.js"></script>
+  <script src="./js/jquery-3.2.1.min.js"></script>
+  <script src="./js/jquery.event.move.js"></script>
+  <script src="./js/jquery.twentytwenty.js"></script>
+  <script src="./js/index.js"></script>
+
+</head>
+<body>
+
+
+  
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://minfenli.github.io/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://minfenli.github.io/GenRC">
+            GenRC
+          </a>
+          <a class="navbar-item" href="https://ttaoretw.github.io/DreaMo/">
+            DreaMo
+          </a>
+        </div>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">UA-Pose: <br> Uncertainty-Aware 6D Object Pose Estimation <br> and Online Object Completion with Partial References</h1>
+          
+          <div>
+            <p class="subtitle is-4"> CVPR 2025 </p>
+          </div> <br>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://minfenli.github.io/">Ming-Feng Li</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="">Xin Yang</a><sup>4</sup>,</span>
+            <span class="author-block">
+              <a href="">Fu-En Wang</a><sup>4</sup>,
+            </span>
+            <span class="author-block">
+              <a href="">Hritam Basak</a><sup>2</sup>, 
+            </span> <br>
+            <span class="author-block">
+              <a href="">Yuyin Sun</a><sup>4</sup>,
+            </span>
+            <span class="author-block">
+              <a href="">Shreekant Gayaka</a><sup>4</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://aliensunmin.github.io/">Min Sun</a><sup>3,4</sup>
+            </span>
+            <span class="author-block">
+              <a href="">Cheng-Hao Kuo</a><sup>4</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Carnegie Mellon University,</span>
+            <span class="author-block"><sup>2</sup>Stony Brook University,</span>
+            <span class="author-block"><sup>3</sup>National Tsing Hua University,</span> 
+            <span class="author-block"><sup>4</sup>Amazon</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <!-- <span class="link-block">
+                <a href="https://drive.google.com/file/d/1lrVSu-dop1rtG2E4hQxpCv_HZPOXWWll/view?usp=sharing"
+                   target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
+              <!-- ArXic Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/minfenli/UA-Pose"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://youtu.be/lkA1IvDY8-c"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <img id="teaser" src="./images/teaser.png" width="100%"></img>
+        <div class="content has-text-justified">
+          <br>
+          <p>
+            6D object pose estimation has shown strong generalizability to novel objects. However, existing methods often require either a complete, well-reconstructed 3D model or numerous reference images that fully cover the object. Estimating 6D poses from partial references, which capture only fragments of an object’s appearance and geometry, remains challenging.
+            To address this, we propose UA-Pose, an uncertainty-aware approach for 6D object pose estimation and online object completion specifically designed for partial references. We assume access to either (1) a limited set of RGBD images with known poses or (2) a single 2D image. For the first case, we initialize a partial object 3D model based on the provided images and poses, while for the second, we use image-to-3D techniques to generate an initial object 3D model.
+            Our method integrates uncertainty into the incomplete 3D model, distinguishing between seen and unseen regions. This uncertainty enables confidence assessment in pose estimation and guides an uncertainty-aware sampling strategy for online object completion, enhancing robustness in pose estimation accuracy and improving object completeness.
+            We evaluate our method on the YCB-Video, YCBInEOAT, and HO3D datasets, including RGBD sequences of YCB objects manipulated by robots and human hands. Experimental results demonstrate significant performance improvements over existing methods, particularly when object observations are incomplete or partially captured.
+          </p>
+          <br>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Initialize Incomplete Object Model</h2>
+    
+        <div class="content has-text-justified">
+          <img id="teaser" src="./images/hybrid_representation1.png" style="display:block; margin:auto; width:60%; height:auto;">
+        </div>
+    
+        <div class="content has-text-justified">
+          <p>
+            <p>
+              As a start, an object model is required for pose estimation, we propose to utilize a <b>hybrid object representation</b> that integrates the object’s texture, geometry, and uncertainty:
+            </p> 
+            <p>
+              <b>1-a.</b> First, if RGBD object images are provided, a neural SDF will be trained and extracted as a mesh representing the object’s appearance and geometry.
+            </p> 
+            <p>
+              <b>1-b.</b> Otherwise, if only one object image is available, the object mesh will be generated mesh by single-image-to-3D approaches.
+            </p> 
+            <p>
+              <b>2.</b> Then, we check the visibility of each mesh vertex from the viewpoint of each reference image to create the uncertainty map, which reflects the seen and unseen regions of an incomplete 3D object model.
+            </p> 
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Pipeline of UA-Pose</h2>
+        <div class="content has-text-justified">
+          <img id="teaser" src="./images/pipeline.png" style="display:block; margin:auto; width:100%; ; height:auto; transform: scale(1.05); transform-origin: center;"></img>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            <!-- <b style="font-size:1.05em;">Pipeline of UA-Pose:</b> -->
+            <p>
+              Then, we present an <b>uncertainty-aware pipeline</b> for 6D object pose estimation and online object completion using our proposed hybrid object representation:
+            </p> 
+            <p>
+              <span style="color:#AF2318;"> <b>1. Pose Estimation:</b> </span> Given the object 3D model and a test RGBD image with object mask, we first estimate the object’s pose using FoundationPose[<a href="#ref1">1</a>].
+            </p>
+            <p>
+              <span style="color:#f2ad18;"> <b>2. Confidence Assessment:</b> </span> To determine the confidence of an estimated pose, we compute its <b>seen IoU</b>—the overlap between the rendered visible region of the 3D model and the 2D object mask in the image. 
+            </p>
+            <p>
+              <span style="color:#3a64be;"> <b>3-a. High-Confidence Path:</b> </span> If the <b>seen IoU</b> is high, the pose is treated as a <b>Good</b> estimation. The test image and estimated pose are stored in a <i>memory pool</i> to support future object completion. 
+            </p>
+            <p>
+              <span style="color:#7EAB55;"> <b>3-b. Low-Confidence Path:</b> </span> If the <b>seen IoU</b> is low, the pose is considered a <b>Wrong</b> estimation (or unreliable). In this case, we perform <b>online object completion</b> by sampling informative views from the memory pool. This process refines the hybrid object model during testing, enabling more accurate future pose estimation. 
+            </p>
+          </p>
+        </div>
+      </div>
+    </div>
+
+<!-- 
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Visual Comparison with RGBD2</h2>
+        <div class="publication-video">
+          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+            <source src="./videos/supplementary_video.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</section>
+
+
+
+<script>
+  $(function(){
+      $(".twentytwenty-container1").twentytwenty({
+          before_label: 'RGBD2', // Set a custom before label
+          after_label: 'Ours', // Set a custom after label
+          default_offset_pct: 0.5,
+          click_to_move: false
+      });
+  });
+</script>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>
+      @article{ming2025UAPose,
+        author  = {Ming-Feng Li, Xin Yang, Fu-En Wang, Hritam Basak, Yuyin Sun, Shreekant Gayaka, Min Sun, Cheng-Hao Kuo},
+        title   = {UA-Pose: Uncertainty-Aware 6D Object Pose Estimation and Online Object Completion with Partial References},
+        journal = {CVPR},
+        year    = {2025}
+      }
+    </code></pre>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">References</h2>
+    <div class="content has-text-justified">
+      <p id="ref1">
+        [1] Wen, Bowen, et al. "Foundationpose: Unified 6d pose estimation and tracking of novel objects." CVPR 2024.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+          This website is adapted from the webpage template of <a href=https://nerfies.github.io/> Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
